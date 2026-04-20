@@ -1,13 +1,13 @@
 # 01 — How RAG Works
 
 > **Time to read:** ~10 minutes  
-> **Prerequisites:** None — this is pure concepts, no code yet.
+> **Prerequisites:** None - this is pure concepts, no code yet.
 
 ---
 
 ## The Problem RAG Solves
 
-Large Language Models (LLMs) like GPT-4 or Mistral are incredibly smart, but they have a hard limitation: **they only know what they were trained on**, and that training happened at a fixed point in time.
+Large Language Models (LLMs) like GPT-4 or Mistral are incredibly smart, but they hallucinate and have a hard limitation: **they only know what they were trained on**, and that training happened at a fixed point in time.
 
 If you ask an LLM:
 - *"What does our company refund policy say?"* → It doesn't know.
@@ -26,7 +26,7 @@ Here's the full flow, explained in plain English:
 
 ### Phase 1: Ingestion (done once, offline)
 
-This is a **setup phase** — you run it once (or whenever your documents change).
+This is a **setup phase** - you run it once (or whenever your documents change).
 
 ```
 Your Documents (.txt, .md, .pdf, etc.)
@@ -47,7 +47,7 @@ Your Documents (.txt, .md, .pdf, etc.)
 
 ---
 
-### Phase 2: Retrieval + Generation (runs on every user question)
+### Phase 2: Retrieval + Augmentation + Generation (runs on every user question)
 
 ```
 User asks: "What is your refund policy?"
@@ -59,16 +59,16 @@ User asks: "What is your refund policy?"
    [Search vector store]      ← find the chunks whose vectors are closest to the question's vector
          │
          ▼
-   [Top 3 chunks returned]    ← e.g. the paragraph about refunds from your policy doc
+   [Top 3 chunks returned(Retrieval)]    ← e.g. the paragraph about refunds from your policy doc
          │
          ▼
-   [Build a prompt]           ← combine the chunks + the question into one prompt
+   [Build a prompt(Augmentation)]           ← combine the chunks + the question into one prompt
          │
          ▼
    [Send to LLM]              ← e.g. Mistral, GPT-4, Claude
          │
          ▼
-   [LLM answers]              ← grounded in your actual documents
+   [LLM answers(Generation)]              ← grounded in your actual documents
          │
          ▼
    User sees the answer ✅
