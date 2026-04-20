@@ -1,9 +1,18 @@
-# 01 — How RAG Works
+# 01 — What is RAG and how RAG Works
 
 > **Time to read:** ~10 minutes  
 > **Prerequisites:** None - this is pure concepts, no code yet.
 
 ---
+## What is RAG
+
+RAG stands for Retrieval-Augmented Generation. It is a design pattern in AI systems that combines two capabilities:
+
+1. **Retrieval**  - fetching relevant information from an external source (documents, wehbsites, databases, APIs, vector stores)
+
+2. **Augmentation** - enhancing a model’s capability by adding external support
+
+3. **Generation** - using a language model to produce a response based on that retrieved information
 
 ## The Problem RAG Solves
 
