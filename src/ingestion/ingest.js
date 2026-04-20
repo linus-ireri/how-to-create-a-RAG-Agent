@@ -1,4 +1,4 @@
-/ src/ingestion/ingest.js
+// src/ingestion/ingest.js
 // Run this script once to process your documents into a searchable vector store.
 // Re-run whenever you add or update documents.
 //
