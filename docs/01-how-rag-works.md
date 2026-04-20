@@ -6,7 +6,7 @@
 ---
 ## What is RAG
 
-RAG stands for Retrieval-Augmented Generation. It is a design pattern in AI systems that combines 3 capabilities:
+RAG stands for Retrieval-Augmented Generation. It is a design pattern in AI systems that combines three capabilities:
 
 1. **Retrieval**  - fetching relevant information from an external source (documents, wehbsites, databases, APIs, vector stores)
 
