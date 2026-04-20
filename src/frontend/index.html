@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAG Chatbot</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .chat-container {
+      width: 700px;
+      max-width: 95vw;
+      height: 85vh;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      padding: 20px 24px;
+      background: #1a1a2e;
+      color: white;
+    }
+
+    .chat-header h1 { font-size: 1.2rem; font-weight: 600; }
+    .chat-header p  { font-size: 0.8rem; opacity: 0.7; margin-top: 4px; }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .message {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .message.user {
+      align-self: flex-end;
+      background: #1a1a2e;
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    .message.bot {
+      align-self: flex-start;
+      background: #f0f2f5;
+      color: #1a1a2e;
+      border-bottom-left-radius: 4px;
+    }
+
+    .message.bot .answer { margin-bottom: 10px; }
+
+    .sources {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #ddd;
+      font-size: 0.78rem;
+      color: #666;
+    }
+
+    .sources strong { display: block; margin-bottom: 4px; color: #444; }
+
+    .source-item {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 6px 10px;
+      margin-top: 4px;
+    }
+
+    .source-item .source-name { font-weight: 600; color: #333; }
+    .source-item .source-score { color: #888; font-size: 0.72rem; }
+    .source-item .source-preview { color: #555; margin-top: 2px; }
+
+    .message.loading { opacity: 0.6; font-style: italic; }
+
+    .chat-input-area {
+      padding: 16px 20px;
+      border-top: 1px solid #eee;
+      display: flex;
+      gap: 10px;
+    }
+
+    #question-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #question-input:focus { border-color: #1a1a2e; }
+
+    #send-btn {
+      padding: 12px 20px;
+      background: #1a1a2e;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    #send-btn:hover { opacity: 0.85; }
+    #send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .error-msg { color: #cc3333; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">
+    <h1>🤖 RAG Chatbot</h1>
+    <p>Ask questions about your documents</p>
+  </div>
+
+  <div class="chat-messages" id="chat-messages">
+    <!-- Messages will be added here by chat.js -->
+    <div class="message bot">
+      <div class="answer">
+        👋 Hello! Ask me anything about your documents. I'll search through them and give you a grounded answer.
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-area">
+    <input
+      type="text"
+      id="question-input"
+      placeholder="Ask a question about your documents..."
+      autocomplete="off"
+    />
+    <button id="send-btn">Send</button>
+  </div>
+</div>
+
+<!-- Load our chat logic from a separate file -->
+<script src="chat.js"></script>
+
+</body>
+</html>

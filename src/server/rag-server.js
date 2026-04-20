@@ -15,7 +15,7 @@ import { LocalIndex } from 'vectra';
 
 const PORT = process.env.PORT || 3001;
 const VECTOR_STORE_DIR = './vector-store';
-const LLM_MODEL = process.env.LLM_MODEL || 'mistralai/mistral-7b-instruct:free';
+const LLM_MODEL = process.env.LLM_MODEL || 'z-ai/glm-4.5-air:free';
 const TOP_K = 3; // number of chunks to retrieve per question
 
 // ─── EXPRESS SETUP ────────────────────────────────────────────────────────────
